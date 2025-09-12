@@ -6,6 +6,17 @@
   margin: 0;
 }
 
+img,
+svg {
+  max-inline-size: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -18,7 +29,10 @@
   --blue-100: #e1e7fe;
   --blue-500: #345ff6;
   --blue-900: #253347;
+  --blue-500: #345ff6;
+  --space-12: 0.75rem;
   --space-16: 1rem;
+  --space-24: 1.5rem;
   --font-base: "Inter", sans-serif;
 }
 

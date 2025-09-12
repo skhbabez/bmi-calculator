@@ -1,0 +1,30 @@
+.container {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -5%;
+  line-height: 1.8125rem;
+
+  & input {
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    border: 1px solid var(--border-color, var(--grey-500));
+    border-radius: var(--space-12);
+    padding: var(--space-24);
+    color: var(--blue-900);
+    outline: none;
+    &:is(:hover, :focus, :focus-visible) {
+      --border-color: var(--blue-500);
+    }
+  }
+}
+
+.unit {
+  pointer-events: none;
+  display: inline-block;
+  margin-inline-start: -25px;
+  transform: translateX(-100%);
+  color: var(--blue-500);
+}
