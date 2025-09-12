@@ -5,13 +5,13 @@ import { clsx } from "clsx";
 const SelectionButton = ({
   className,
   ...props
-}: Omit<ComponentProps<"input">, "type">) => {
+}: Omit<ComponentProps<"input">, "type" | "children">) => {
   return (
     <input
       className={clsx(styles.selectionbutton, className)}
       type="radio"
       {...props}
-    ></input>
+    />
   );
 };
 

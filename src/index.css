@@ -9,7 +9,6 @@
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  /* ascent-override: 110%; */
   src: local("Inter"),
     url("fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }
