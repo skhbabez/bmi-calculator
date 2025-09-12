@@ -4,8 +4,24 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: local("Inter"),
+    url("fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+}
+
 :root {
   --grey-500: #5e6e85;
   --blue-100: #e1e7fe;
   --blue-500: #345ff6;
+  --blue-900: #253347;
+  --space-16: 1rem;
+  --font-base: "Inter", sans-serif;
+}
+
+body {
+  line-height: 1.5;
+  font-family: var(--font-base);
+  font-size: 1rem;
 }

@@ -8,4 +8,5 @@ input[type="radio"].selectionbutton {
     border: 0.5rem solid var(--blue-100);
     background-color: var(--blue-500);
   }
+  margin-block-end: var(--space-16);
 }

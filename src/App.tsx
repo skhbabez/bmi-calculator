@@ -1,5 +1,11 @@
+import SelectionButton from "./components/SelectionButton/SelectionButton";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <SelectionButton></SelectionButton>
+    </>
+  );
 }
 
 export default App;
