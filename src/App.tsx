@@ -1,12 +1,16 @@
-import Label from "./components/Label/Label";
-import SelectionButton from "./components/SelectionButton/SelectionButton";
+import { useState } from "react";
+import ResultBar from "./components/ResultBar/ResultBar";
 
 function App() {
+  const [input, setInput] = useState<number>();
+
   return (
-    <Label>
-      <SelectionButton></SelectionButton>
-      <span>Metric</span>
-    </Label>
+    <>
+      <input
+        onChange={(event) => setInput(Number(event.currentTarget.value))}
+      />        
+      <ResultBar bmi={input}></ResultBar>;
+    </>
   );
 }
 

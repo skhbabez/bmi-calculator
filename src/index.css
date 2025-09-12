@@ -41,3 +41,26 @@ body {
   font-family: var(--font-base);
   font-size: 1rem;
 }
+
+.copy-l {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -5%;
+  line-height: 1.8125rem;
+  font-family: var(--font-base);
+}
+
+.copy-s {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-family: var(--font-base);
+}
+
+.heading-l {
+  /* @link https://utopia.fyi/clamp/calculator?a=768,1240,48—64 */
+  font-size: clamp(3rem, 1.3729rem + 3.3898vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -5%;
+  font-family: var(--font-base);
+}

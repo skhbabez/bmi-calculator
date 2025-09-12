@@ -1,0 +1,36 @@
+.resultbar {
+  --white: #ffffff;
+  background-color: var(--blue-500);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: var(--white);
+  @media (min-width: 768px) {
+    clip-path: inset(0 0 0 0 round 0 62.4375rem 62.4375rem 0);
+  }
+}
+
+.welcome > * + * {
+  margin-block-start: 1rem;
+}
+
+.resultcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result {
+  & > p + p {
+    margin-block-start: 0.5rem;
+  }
+}
+
+.description {
+  max-inline-size: 16.6875rem;
+  & em {
+    font-weight: bold;
+    font-style: normal;
+  }
+}
