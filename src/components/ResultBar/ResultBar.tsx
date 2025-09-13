@@ -1,16 +1,21 @@
 import clsx from "clsx";
 import styles from "./ResultBar.module.css";
-import { calculateBmi, calculateIdealWeight } from "../../scripts/bmi";
+import {
+  calculateBmi,
+  calculateIdealWeight,
+  toImperialWeight,
+} from "../../scripts/bmi";
 interface ResultBarProps {
   weight?: number;
   height?: number;
+  unit: "metric" | "imperial";
 }
 // source https://en.wikipedia.org/wiki/Body_mass_index
-const ResultBar = ({ weight, height }: ResultBarProps) => {
+const ResultBar = ({ weight, height, unit }: ResultBarProps) => {
   return (
     <div aria-live="polite" aria-atomic="true">
       {weight && height ? (
-        <ResultView weight={weight} height={height}></ResultView>
+        <ResultView weight={weight} height={height} unit={unit}></ResultView>
       ) : (
         <WelcomeView />
       )}
@@ -29,14 +34,22 @@ const WelcomeView = () => {
   );
 };
 
-const ResultView = ({ weight, height }: { weight: number; height: number }) => {
+const ResultView = ({
+  weight,
+  height,
+  unit,
+}: {
+  weight: number;
+  height: number;
+  unit: "metric" | "imperial";
+}) => {
   const between = (value: number, min: number, max: number) => {
     return value >= min && value <= max;
   };
 
   const bmi = calculateBmi(weight, height);
-  const { minWeight, maxWeight } = calculateIdealWeight(height);
-  const range = `${minWeight.toFixed(1)}kgs - ${maxWeight.toFixed(1)}kgs`;
+  let { minWeight, maxWeight } = calculateIdealWeight(height);
+  let range;
   let classification;
   if (bmi < 16) {
     classification = "Underweight (Severe thinness)";
@@ -54,6 +67,14 @@ const ResultView = ({ weight, height }: { weight: number; height: number }) => {
     classification = "Obese (Class II)";
   } else {
     classification = "Obese (Class III)";
+  }
+
+  if (unit === "imperial") {
+    const { stone: minStone, pound: minPound } = toImperialWeight(minWeight);
+    const { stone: maxStone, pound: maxPound } = toImperialWeight(maxWeight);
+    range = `${minStone}st ${minPound}lbs - ${maxStone}st ${maxPound}lbs`;
+  } else {
+    range = `${minWeight.toFixed(1)}kgs - ${maxWeight.toFixed(1)}kgs`;
   }
 
   return (

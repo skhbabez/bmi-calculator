@@ -14,7 +14,7 @@ const calculateBmi = (weight: number, height: number) => {
 /**
  * Calculate ideal weight based on height
  * @param {number} height - Height in metres
- * @returns {number, number} Returns minWeight and maxWeight
+ * @returns {{number, number}} Returns minWeight and maxWeight in kilogram
  */
 const calculateIdealWeight = (height: number) => {
   if (height <= 0) {
@@ -25,4 +25,31 @@ const calculateIdealWeight = (height: number) => {
   return { minWeight, maxWeight };
 };
 
-export { calculateBmi, calculateIdealWeight };
+/**
+ * Convert weight in kilogram to stone and pound
+ * @param {number} weight - weight in metres
+ * @returns {{number, number}} Returns stone and pound rounded
+ */
+const toImperialWeight = (weight: number) => {
+  const stone = weight / 6.35029497;
+  const pound = (stone % 1) * 14;
+  return { stone: Math.floor(stone), pound: Math.floor(pound) };
+};
+
+/**
+ * Convert height in metres to feet and inches
+ * @param {number} height - height in metres
+ * @returns {{number, number}} Returns feet and inches rounded
+ */
+const toImperialHeight = (height: number) => {
+  const feet = height / 0.3048;
+  const inches = (feet % 1) * 12;
+  return { feet: Math.floor(feet), inches: Math.floor(inches) };
+};
+
+export {
+  calculateBmi,
+  calculateIdealWeight,
+  toImperialHeight,
+  toImperialWeight,
+};
