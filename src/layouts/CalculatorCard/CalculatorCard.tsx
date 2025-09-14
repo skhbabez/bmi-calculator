@@ -11,18 +11,16 @@ import {
   toMetricWeight,
 } from "../../scripts/bmi";
 
-interface CalculatorCardProps {}
-
 type unitSystem = "metric" | "imperial";
 
 const removeLetters = (value: string) => {
   return value.replace(/\D/g, "");
 };
 
-const CalculatorCard = ({}: CalculatorCardProps) => {
+const CalculatorCard = () => {
   const [unit, setUnit] = useState<unitSystem>("metric");
   const [height, setHeight] = useState<number>(); //in cm
-  const [weight, setWeight] = useState<number>(); //in gram
+  const [weight, setWeight] = useState<number>(); //in kg
 
   const formId = useId();
 
@@ -61,8 +59,8 @@ const CalculatorCard = ({}: CalculatorCardProps) => {
           <MetricView
             height={height}
             weight={weight}
-            onHeightChange={handleHeightChange}
-            onWeightChange={handleWeightChange}
+            onHeightChange={setHeight}
+            onWeightChange={setWeight}
           />
         ) : (
           <ImperialView
@@ -73,7 +71,11 @@ const CalculatorCard = ({}: CalculatorCardProps) => {
           />
         )}
 
-        <ResultBar unit={unit} height={height} weight={weight}></ResultBar>
+        <ResultBar
+          unit={unit}
+          height={(height || 0) / 100}
+          weight={weight}
+        ></ResultBar>
       </form>
     </>
   );
@@ -98,7 +100,7 @@ const MetricView = ({
           <span className="sr-only">in kg</span>
           <UnitInput
             unit="kg"
-            value={weight ? weight.toFixed(0) : ""}
+            value={weight || ""}
             placeholder="0"
             onChange={(event) =>
               onWeightChange(Number(removeLetters(event.currentTarget.value)))
@@ -112,12 +114,10 @@ const MetricView = ({
           <span className="sr-only">in cm</span>
           <UnitInput
             unit="cm"
-            value={height ? (height * 100).toFixed(0) : ""}
+            value={height || ""}
             placeholder="0"
             onChange={(event) =>
-              onHeightChange(
-                Number(removeLetters(event.currentTarget.value)) / 100
-              )
+              onHeightChange(Number(removeLetters(event.currentTarget.value)))
             }
           />
         </Label>
@@ -136,7 +136,7 @@ const ImperialView = ({
   onHeightChange: (height: number) => void;
   onWeightChange: (weight: number) => void;
 }) => {
-  const { feet, inches } = height ? toImperialHeight(height) : {};
+  const { feet, inches } = height ? toImperialHeight(height / 100) : {};
   const { stone, pound } = weight ? toImperialWeight(weight) : {};
   const feetRef = useRef<HTMLInputElement | null>(null);
   const inchRef = useRef<HTMLInputElement | null>(null);
@@ -148,12 +148,9 @@ const ImperialView = ({
     const stoneCurrent = stoneRef.current;
     if (poundCurrent && stoneCurrent) {
       const stoneValue = removeLetters(stoneCurrent.value);
-      const poundValue = removeLetters(poundCurrent.value);
+      const poundValue = removeLetters(poundCurrent.value) || 0;
       console.log(stoneValue);
       console.log(poundValue);
-      if (poundValue.length > 2 || Number(poundValue) > 13) {
-        return;
-      }
       const metricWeight = toMetricWeight(
         Number(stoneValue),
         Number(poundValue)
@@ -165,11 +162,9 @@ const ImperialView = ({
     const feetCurrent = feetRef.current;
     const inchCurrent = inchRef.current;
     if (feetCurrent && inchCurrent) {
-      const metricHeight = toMetricHeight(
-        Number(removeLetters(feetCurrent.value)),
-        Number(removeLetters(inchCurrent.value))
-      );
-      console.log(metricHeight);
+      const feetValue = removeLetters(feetCurrent.value);
+      const inchValue = removeLetters(inchCurrent.value) || 0;
+      const metricHeight = toMetricHeight(Number(feetValue), Number(inchValue));
       onHeightChange(metricHeight);
     }
   };
@@ -182,7 +177,7 @@ const ImperialView = ({
           <UnitInput
             ref={feetRef}
             unit="ft"
-            value={feet?.toFixed(0) || ""}
+            value={feet}
             placeholder="0"
             onInput={handleHeightChange}
           />
@@ -192,7 +187,7 @@ const ImperialView = ({
           <UnitInput
             ref={inchRef}
             unit="in"
-            value={inches?.toFixed(0) || ""}
+            value={inches}
             placeholder="0"
             onInput={handleHeightChange}
           />
@@ -205,7 +200,7 @@ const ImperialView = ({
           <UnitInput
             ref={stoneRef}
             unit="st"
-            value={stone?.toFixed(0) || ""}
+            value={stone}
             placeholder="0"
             onInput={handleWeightChange}
           />
@@ -215,7 +210,7 @@ const ImperialView = ({
           <UnitInput
             ref={poundRef}
             unit="lbs"
-            value={pound?.toFixed(0) || ""}
+            value={pound}
             placeholder="0"
             onInput={handleWeightChange}
           />
