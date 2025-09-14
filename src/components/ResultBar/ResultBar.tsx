@@ -14,7 +14,7 @@ interface ResultBarProps {
 const ResultBar = ({ weight, height, unit }: ResultBarProps) => {
   return (
     <div aria-live="polite" aria-atomic="true">
-      {weight && height ? (
+      {weight && height && weight > 0 && height > 0 ? (
         <ResultView weight={weight} height={height} unit={unit}></ResultView>
       ) : (
         <WelcomeView />
@@ -26,8 +26,8 @@ const ResultBar = ({ weight, height, unit }: ResultBarProps) => {
 const WelcomeView = () => {
   return (
     <section className={clsx(styles.welcome, styles.resultbar)}>
-      <p className="copy-l">Welcome!</p>
-      <p className="copy-s">
+      <p className="text-ml-sb">Welcome!</p>
+      <p className="text-s">
         Enter your height and weight and you’ll see your BMI result here
       </p>
     </section>
@@ -80,12 +80,12 @@ const ResultView = ({
   return (
     <section className={clsx(styles.resultcontainer, styles.resultbar)}>
       <div className={styles.result}>
-        <p className="copy-l">Your BMI is...</p>
-        <p className="heading-l">{bmi.toFixed(1)}</p>
+        <p className="text-sm-sb">Your BMI is...</p>
+        <p className="text-xl-sb">{bmi.toFixed(1)}</p>
       </div>
-      <p className={clsx(styles.description, "copy-s")}>
+      <p className={clsx(styles.description, "text-s")}>
         Your BMI suggests you’re {classification}. Your ideal weight is between{" "}
-        <em>{range}</em>.
+        <em className="text-s-b">{range}</em>.
       </p>
     </section>
   );

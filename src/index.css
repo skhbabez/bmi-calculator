@@ -17,6 +17,10 @@ ol {
   list-style: none;
 }
 
+fieldset {
+  border: none;
+}
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -41,26 +45,74 @@ body {
   font-family: var(--font-base);
   font-size: 1rem;
 }
-
-.copy-l {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -5%;
-  line-height: 1.8125rem;
-  font-family: var(--font-base);
-}
-
-.copy-s {
+.text-s {
   font-size: 0.875rem;
   line-height: 1.5;
-  font-family: var(--font-base);
+  font-family: inherit;
+}
+.text-s-sb {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 600;
+  font-family: inherit;
+}
+.text-s-b {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 700;
+  font-family: inherit;
 }
 
-.heading-l {
+.text-sm {
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+.text-sm-sb {
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.text-m-sb {
+  font-size: 1.25rem;
+  letter-spacing: -5%;
+  line-height: 1.2;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.text-ml-sb {
+  font-size: 1.5rem;
+  letter-spacing: -5%;
+  line-height: 1.2;
+  font-family: inherit;
+  font-weight: 600;
+}
+.text-l-sb {
+  font-size: 2rem;
+  letter-spacing: -5%;
+  line-height: 1.1;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.text-xl-sb {
   /* @link https://utopia.fyi/clamp/calculator?a=768,1240,48—64 */
   font-size: clamp(3rem, 1.3729rem + 3.3898vw, 4rem);
-  font-weight: 600;
   line-height: 1.1;
   letter-spacing: -5%;
-  font-family: var(--font-base);
+  font-family: inherit;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

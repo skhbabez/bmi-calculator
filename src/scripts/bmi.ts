@@ -31,9 +31,9 @@ const calculateIdealWeight = (height: number) => {
  * @returns {{number, number}} Returns stone and pound rounded
  */
 const toImperialWeight = (weight: number) => {
-  const stone = weight / 6.35029497;
+  const stone = weight * 0.157473;
   const pound = (stone % 1) * 14;
-  return { stone: Math.floor(stone), pound: Math.floor(pound) };
+  return { stone: Math.round(stone), pound: Math.round(pound) };
 };
 
 /**
@@ -44,7 +44,14 @@ const toImperialWeight = (weight: number) => {
 const toImperialHeight = (height: number) => {
   const feet = height / 0.3048;
   const inches = (feet % 1) * 12;
-  return { feet: Math.floor(feet), inches: Math.floor(inches) };
+  return { feet: Math.round(feet), inches: Math.round(inches) };
+};
+
+const toMetricHeight = (feet: number, inches: number) => {
+  return feet * 0.3048 + inches * 0.0254;
+};
+const toMetricWeight = (stone: number, pounds: number) => {
+  return stone * 6.35029497 + pounds * 0.453592;
 };
 
 export {
@@ -52,4 +59,6 @@ export {
   calculateIdealWeight,
   toImperialHeight,
   toImperialWeight,
+  toMetricHeight,
+  toMetricWeight,
 };

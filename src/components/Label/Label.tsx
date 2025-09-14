@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 const Label = ({ className, children, ...props }: ComponentProps<"label">) => {
   return (
-    <label className={clsx(styles.label, className)} {...props}>
+    <label className={clsx(styles.label, "text-s-sb", className)} {...props}>
       {children}
     </label>
   );

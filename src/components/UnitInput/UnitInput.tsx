@@ -9,7 +9,7 @@ interface UnitInputProps
 
 const UnitInput = ({ className, unit, ...props }: UnitInputProps) => {
   return (
-    <span className={clsx(styles.container, "copy-l")}>
+    <span className={clsx(styles.container, "text-l-sb")}>
       <input type="text" {...props} />
       <span className={styles.unit} aria-hidden="true">
         {unit}
