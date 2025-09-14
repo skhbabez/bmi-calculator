@@ -33,7 +33,7 @@ const calculateIdealWeight = (height: number) => {
 const toImperialWeight = (weight: number) => {
   const stone = weight * 0.157473;
   const pound = (stone % 1) * 14;
-  return { stone: Math.round(stone), pound: Math.round(pound) };
+  return { stone: Math.floor(stone), pound: Math.round(pound) };
 };
 
 /**
@@ -44,7 +44,7 @@ const toImperialWeight = (weight: number) => {
 const toImperialHeight = (height: number) => {
   const feet = height / 0.3048;
   const inches = (feet % 1) * 12;
-  return { feet: Math.round(feet), inches: Math.round(inches) };
+  return { feet: Math.floor(feet), inches: Math.round(inches) };
 };
 
 const toMetricHeight = (feet: number, inches: number) => {
