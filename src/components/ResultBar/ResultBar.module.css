@@ -30,7 +30,6 @@
 .description {
   max-inline-size: 16.6875rem;
   & em {
-    font-weight: bold;
     font-style: normal;
   }
 }
