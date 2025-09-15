@@ -1,0 +1,32 @@
+.card {
+  border-radius: 1rem;
+  background-color: var(--white);
+  /* @link https://utopia.fyi/clamp/calculator?a=375,768,24—32 */
+  padding: clamp(1.5rem, 1.0229rem + 2.0356vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 1.0229rem + 2.0356vw, 2rem);
+  box-shadow: 1rem 2rem 3.5rem 0 hsla(211, 40%, 69%, 25%);
+}
+
+.unitselector {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  & > * {
+    flex: 1;
+  }
+}
+
+.metricview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  & > * {
+    min-inline-size: 280px;
+    flex: 1;
+  }
+  & legend {
+    margin-block-end: 0.5rem;
+  }
+}

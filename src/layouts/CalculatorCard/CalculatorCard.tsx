@@ -55,53 +55,53 @@ const CalculatorCard = () => {
     setCm(Math.round(height) * 100);
   };
   return (
-    <>
-      <h2 id={formId}>Enter your details below</h2>
-      <form noValidate aria-labelledby={formId}>
-        <fieldset>
-          <legend className="sr-only">Choose a Unit</legend>
-          <Label>
-            <SelectionButton
-              checked={unit === "metric"}
-              name="unit"
-              onChange={() => setUnit("metric")}
-            />
-            Metric
-          </Label>
-          <Label>
-            <SelectionButton
-              checked={unit === "imperial"}
-              name="unit"
-              onChange={() => setUnit("imperial")}
-            />
-            Imperial
-          </Label>
-        </fieldset>
-        {unit === "metric" ? (
-          <MetricView
-            height={cm}
-            weight={kilograms}
-            onHeightChange={metricHeightChange}
-            onWeightChange={metricWeightChange}
+    <form className={styles.card} noValidate aria-labelledby={formId}>
+      <h2 className="text-ml-sb " id={formId}>
+        Enter your details below
+      </h2>
+      <fieldset className={styles.unitselector}>
+        <legend className="sr-only">Choose a Unit</legend>
+        <Label>
+          <SelectionButton
+            checked={unit === "metric"}
+            name="unit"
+            onChange={() => setUnit("metric")}
           />
-        ) : (
-          <ImperialView
-            feet={feet}
-            inches={inches}
-            stone={stone}
-            pound={pound}
-            onHeightChange={imperialHeightChange}
-            onWeightChange={imperialWeightChange}
+          Metric
+        </Label>
+        <Label>
+          <SelectionButton
+            checked={unit === "imperial"}
+            name="unit"
+            onChange={() => setUnit("imperial")}
           />
-        )}
-
-        <ResultBar
-          unit={unit}
-          height={(cm || 0) / 100}
+          Imperial
+        </Label>
+      </fieldset>
+      {unit === "metric" ? (
+        <MetricView
+          height={cm}
           weight={kilograms}
-        ></ResultBar>
-      </form>
-    </>
+          onHeightChange={metricHeightChange}
+          onWeightChange={metricWeightChange}
+        />
+      ) : (
+        <ImperialView
+          feet={feet}
+          inches={inches}
+          stone={stone}
+          pound={pound}
+          onHeightChange={imperialHeightChange}
+          onWeightChange={imperialWeightChange}
+        />
+      )}
+
+      <ResultBar
+        unit={unit}
+        height={(cm || 0) / 100}
+        weight={kilograms}
+      ></ResultBar>
+    </form>
   );
 };
 
@@ -117,7 +117,7 @@ const MetricView = ({
   onWeightChange: (weight: number) => void;
 }) => {
   return (
-    <>
+    <div className={styles.metricview}>
       <fieldset>
         <legend>weight</legend>
         <Label>
@@ -146,7 +146,7 @@ const MetricView = ({
           />
         </Label>
       </fieldset>
-    </>
+    </div>
   );
 };
 const ImperialView = ({

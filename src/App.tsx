@@ -1,15 +1,9 @@
-import { useState } from "react";
-import ResultBar from "./components/ResultBar/ResultBar";
+import CalculatorCard from "./layouts/CalculatorCard/CalculatorCard";
 
 function App() {
-  const [input, setInput] = useState<number>();
-
   return (
     <>
-      <input
-        onChange={(event) => setInput(Number(event.currentTarget.value))}
-      />        
-      <ResultBar bmi={input}></ResultBar>;
+      <CalculatorCard />
     </>
   );
 }

@@ -34,6 +34,7 @@ fieldset {
   --blue-500: #345ff6;
   --blue-900: #253347;
   --blue-500: #345ff6;
+  --white: #ffffff;
   --space-12: 0.75rem;
   --space-16: 1rem;
   --space-24: 1.5rem;
@@ -44,6 +45,10 @@ body {
   line-height: 1.5;
   font-family: var(--font-base);
   font-size: 1rem;
+}
+
+legend {
+  color: var(--grey-500);
 }
 .text-s {
   font-size: 0.875rem;
