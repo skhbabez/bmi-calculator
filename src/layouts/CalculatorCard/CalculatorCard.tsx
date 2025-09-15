@@ -119,21 +119,7 @@ const MetricView = ({
   return (
     <div className={styles.metricview}>
       <fieldset>
-        <legend>weight</legend>
-        <Label>
-          <span className="sr-only">in kg</span>
-          <UnitInput
-            unit="kg"
-            value={weight || ""}
-            placeholder="0"
-            onChange={(event) =>
-              onWeightChange(Number(removeLetters(event.currentTarget.value)))
-            }
-          />
-        </Label>
-      </fieldset>
-      <fieldset>
-        <legend>height</legend>
+        <legend>Height</legend>
         <Label>
           <span className="sr-only">in cm</span>
           <UnitInput
@@ -142,6 +128,20 @@ const MetricView = ({
             placeholder="0"
             onChange={(event) =>
               onHeightChange(Number(removeLetters(event.currentTarget.value)))
+            }
+          />
+        </Label>
+      </fieldset>
+      <fieldset>
+        <legend>Weight</legend>
+        <Label>
+          <span className="sr-only">in kg</span>
+          <UnitInput
+            unit="kg"
+            value={weight || ""}
+            placeholder="0"
+            onChange={(event) =>
+              onWeightChange(Number(removeLetters(event.currentTarget.value)))
             }
           />
         </Label>
@@ -188,9 +188,9 @@ const ImperialView = ({
     }
   };
   return (
-    <>
+    <div className={styles.imperialview}>
       <fieldset>
-        <legend>height</legend>
+        <legend>Height</legend>
         <Label>
           <span className="sr-only">in feet</span>
           <UnitInput
@@ -213,7 +213,7 @@ const ImperialView = ({
         </Label>
       </fieldset>
       <fieldset>
-        <legend>weight</legend>
+        <legend>Weight</legend>
         <Label>
           <span className="sr-only">in stone</span>
           <UnitInput
@@ -235,7 +235,7 @@ const ImperialView = ({
           />
         </Label>
       </fieldset>
-    </>
+    </div>
   );
 };
 

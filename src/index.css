@@ -47,9 +47,7 @@ body {
   font-size: 1rem;
 }
 
-legend {
-  color: var(--grey-500);
-}
+
 .text-s {
   font-size: 0.875rem;
   line-height: 1.5;

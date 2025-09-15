@@ -12,7 +12,6 @@
 .unitselector {
   display: flex;
   gap: 1.5rem;
-  justify-content: space-between;
   & > * {
     flex: 1;
   }
@@ -21,7 +20,8 @@
 .metricview {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  row-gap: 1rem;
+  column-gap: 1.5rem;
   & > * {
     min-inline-size: 280px;
     flex: 1;
@@ -29,4 +29,33 @@
   & legend {
     margin-block-end: 0.5rem;
   }
+}
+
+.imperialview {
+  display: flex;
+  flex-direction: column;
+  /* @link https://utopia.fyi/clamp/calculator?a=375,768,16—32 */
+  /* @link https://utopia.fyi/clamp/calculator?a=768,1440,32—24 */
+  gap: clamp(
+    1rem,
+    0.0458rem + 4.0712vw,
+    clamp(1.5rem, 2.5714rem + -1.1905vw, 2rem)
+  );
+  & fieldset {
+    display: flex;
+    /* @link https://utopia.fyi/clamp/calculator?a=375,768,16—24 */
+    gap: clamp(1rem, 0.5229rem + 2.0356vw, 1.5rem);
+    & > * {
+      flex: 1;
+    }
+  }
+  & legend {
+    margin-block-end: 0.5rem;
+  }
+}
+
+:is(.imperialview, .metricview) legend {
+  color: var(--grey-500);
+  line-height: 1.5;
+  font-size: 0.875rem;
 }
