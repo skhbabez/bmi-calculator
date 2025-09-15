@@ -19,18 +19,40 @@ const removeLetters = (value: string) => {
 
 const CalculatorCard = () => {
   const [unit, setUnit] = useState<unitSystem>("metric");
-  const [height, setHeight] = useState<number>(); //in cm
-  const [weight, setWeight] = useState<number>(); //in kg
+  const [feet, setFeet] = useState<number>();
+  const [inches, setInches] = useState<number>();
+  const [stone, setStone] = useState<number>();
+  const [pound, setPound] = useState<number>();
+  const [cm, setCm] = useState<number>();
+  const [kilograms, setKilograms] = useState<number>();
+
+  const metricHeightChange = (height: number) => {
+    const { feet, inches } = toImperialHeight(height / 100);
+    setFeet(Math.round(feet));
+    setInches(Math.round(inches));
+    setCm(Math.round(height));
+  };
+  const metricWeightChange = (weight: number) => {
+    const { stone, pound } = toImperialWeight(weight);
+    setStone(Math.round(stone));
+    setPound(Math.round(pound));
+    setKilograms(Math.round(weight));
+  };
 
   const formId = useId();
 
-  const handleHeightChange = (height: number) => {
-    setHeight(height);
+  const imperialWeightChange = (stone: number, pound: number) => {
+    const weight = toMetricWeight(stone, pound);
+    setStone(Math.round(stone));
+    setPound(Math.round(pound));
+    setKilograms(Math.round(weight));
   };
 
-  const handleWeightChange = (weight: number) => {
-    console.log("weight: " + weight);
-    setWeight(weight);
+  const imperialHeightChange = (feet: number, inches: number) => {
+    const height = toMetricHeight(feet, inches);
+    setFeet(Math.round(feet));
+    setInches(Math.round(inches));
+    setCm(Math.round(height) * 100);
   };
   return (
     <>
@@ -57,24 +79,26 @@ const CalculatorCard = () => {
         </fieldset>
         {unit === "metric" ? (
           <MetricView
-            height={height}
-            weight={weight}
-            onHeightChange={setHeight}
-            onWeightChange={setWeight}
+            height={cm}
+            weight={kilograms}
+            onHeightChange={metricHeightChange}
+            onWeightChange={metricWeightChange}
           />
         ) : (
           <ImperialView
-            height={height}
-            weight={weight}
-            onHeightChange={handleHeightChange}
-            onWeightChange={handleWeightChange}
+            feet={feet}
+            inches={inches}
+            stone={stone}
+            pound={pound}
+            onHeightChange={imperialHeightChange}
+            onWeightChange={imperialWeightChange}
           />
         )}
 
         <ResultBar
           unit={unit}
-          height={(height || 0) / 100}
-          weight={weight}
+          height={(cm || 0) / 100}
+          weight={kilograms}
         ></ResultBar>
       </form>
     </>
@@ -126,18 +150,20 @@ const MetricView = ({
   );
 };
 const ImperialView = ({
-  height,
-  weight,
+  feet,
+  inches,
+  stone,
+  pound,
   onHeightChange,
   onWeightChange,
 }: {
-  height?: number;
-  weight?: number;
-  onHeightChange: (height: number) => void;
-  onWeightChange: (weight: number) => void;
+  feet?: number;
+  inches?: number;
+  stone?: number;
+  pound?: number;
+  onHeightChange: (feet: number, inches: number) => void;
+  onWeightChange: (stone: number, pound: number) => void;
 }) => {
-  const { feet, inches } = height ? toImperialHeight(height / 100) : {};
-  const { stone, pound } = weight ? toImperialWeight(weight) : {};
   const feetRef = useRef<HTMLInputElement | null>(null);
   const inchRef = useRef<HTMLInputElement | null>(null);
   const stoneRef = useRef<HTMLInputElement | null>(null);
@@ -147,25 +173,18 @@ const ImperialView = ({
     const poundCurrent = poundRef.current;
     const stoneCurrent = stoneRef.current;
     if (poundCurrent && stoneCurrent) {
-      const stoneValue = removeLetters(stoneCurrent.value);
-      const poundValue = removeLetters(poundCurrent.value) || 0;
-      console.log(stoneValue);
-      console.log(poundValue);
-      const metricWeight = toMetricWeight(
-        Number(stoneValue),
-        Number(poundValue)
-      );
-      onWeightChange(metricWeight);
+      const stoneValue = Number(removeLetters(stoneCurrent.value));
+      const poundValue = Number(removeLetters(poundCurrent.value));
+      onWeightChange(stoneValue, poundValue);
     }
   };
   const handleHeightChange = () => {
     const feetCurrent = feetRef.current;
     const inchCurrent = inchRef.current;
     if (feetCurrent && inchCurrent) {
-      const feetValue = removeLetters(feetCurrent.value);
-      const inchValue = removeLetters(inchCurrent.value) || 0;
-      const metricHeight = toMetricHeight(Number(feetValue), Number(inchValue));
-      onHeightChange(metricHeight);
+      const feetValue = Number(removeLetters(feetCurrent.value));
+      const inchValue = Number(removeLetters(inchCurrent.value));
+      onHeightChange(feetValue, inchValue);
     }
   };
   return (
@@ -177,7 +196,7 @@ const ImperialView = ({
           <UnitInput
             ref={feetRef}
             unit="ft"
-            value={feet}
+            value={feet || ""}
             placeholder="0"
             onInput={handleHeightChange}
           />
@@ -187,7 +206,7 @@ const ImperialView = ({
           <UnitInput
             ref={inchRef}
             unit="in"
-            value={inches}
+            value={inches || ""}
             placeholder="0"
             onInput={handleHeightChange}
           />
@@ -200,7 +219,7 @@ const ImperialView = ({
           <UnitInput
             ref={stoneRef}
             unit="st"
-            value={stone}
+            value={stone || ""}
             placeholder="0"
             onInput={handleWeightChange}
           />
@@ -210,7 +229,7 @@ const ImperialView = ({
           <UnitInput
             ref={poundRef}
             unit="lbs"
-            value={pound}
+            value={pound || ""}
             placeholder="0"
             onInput={handleWeightChange}
           />
