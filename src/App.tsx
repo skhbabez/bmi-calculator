@@ -1,10 +1,10 @@
-import CalculatorCard from "./layouts/CalculatorCard/CalculatorCard";
+import Hero from "./layouts/Hero/Hero";
 
 function App() {
   return (
-    <>
-      <CalculatorCard />
-    </>
+    <main>
+      <Hero />
+    </main>
   );
 }
 

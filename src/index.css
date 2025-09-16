@@ -45,8 +45,14 @@ body {
   line-height: 1.5;
   font-family: var(--font-base);
   font-size: 1rem;
+  color: var(--grey-500);
 }
 
+h1,
+h2,
+h3 {
+  color: var(--blue-900);
+}
 
 .text-s {
   font-size: 0.875rem;
