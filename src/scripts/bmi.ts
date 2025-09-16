@@ -39,7 +39,7 @@ const toImperialWeight = (weight: number) => {
 /**
  * Convert height in metres to feet and inches
  * @param {number} height - height in metres
- * @returns {{number, number}} Returns feet and inches rounded
+ * @returns {{number, number}} Returns feet and inches rounded down
  */
 const toImperialHeight = (height: number) => {
   const feet = height / 0.3048;
@@ -47,9 +47,22 @@ const toImperialHeight = (height: number) => {
   return { feet: Math.floor(feet), inches: Math.floor(inches) };
 };
 
+/**
+ * Convert height in feet and inches to metres
+ * @param {number} feet - height in feet
+ * @param {number} inches - height in inches
+ * @returns {{number, number}} Returns metres
+ */
 const toMetricHeight = (feet: number, inches: number) => {
   return feet * 0.3048 + inches * 0.0254;
 };
+
+/**
+ * Convert weight in stone and pound to kilograms
+ * @param {number} stone - weight in stone
+ * @param {number} pound - weight in pound
+ * @returns {{number, number}} Returns Kilograms
+ */
 const toMetricWeight = (stone: number, pounds: number) => {
   return stone * 6.35029497 + pounds * 0.453592;
 };
