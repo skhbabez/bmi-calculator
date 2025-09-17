@@ -1,5 +1,12 @@
 import { expect, test } from "vitest";
-import { calculateBmi, calculateIdealWeight, toImperialHeight } from "./bmi";
+import {
+  calculateBmi,
+  calculateIdealWeight,
+  toImperialHeight,
+  toImperialWeight,
+  toMetricHeight,
+  toMetricWeight,
+} from "./bmi";
 
 test("Calculate bmi for 80kg and 1.85m", () => {
   expect(calculateBmi(80, 1.85)).toBeCloseTo(23.4, 1);
@@ -28,6 +35,15 @@ test.each([0, -1])("Expect Exception for %im", (height) => {
     /Height has to be greater than zero./
   );
 });
+
+test.each([
+  [5, 11, 1.81],
+  [6, 0, 1.85],
+])("Expect %im for %ift and %iin", (feet, inches, expMetres) => {
+  const metres = toMetricHeight(feet, inches);
+  expect(metres).toBeCloseTo(expMetres, 1);
+});
+
 test.each([
   [1.81, 5, 11],
   [1.85, 6, 0],
@@ -35,4 +51,21 @@ test.each([
   const { feet, inches } = toImperialHeight(height);
   expect(feet).toBeCloseTo(expFeet, 1);
   expect(inches).toBeCloseTo(expInches, 1);
+});
+
+test.each([
+  [83, 13, 0],
+  [88.9, 13, 13],
+])("For %ikg Expect %ist and %ilbs", (weight, expStone, expPound) => {
+  const { stone, pound } = toImperialWeight(weight);
+  expect(stone).toBeCloseTo(expStone, 1);
+  expect(pound).toBeCloseTo(expPound, 1);
+});
+
+test.each([
+  [13, 0, 82.6],
+  [13, 12, 88],
+])("For %ikg Expect %ist and %ilbs", (stone, pound, expKg) => {
+  const kg = toMetricWeight(stone, pound);
+  expect(kg).toBeCloseTo(expKg, 1);
 });
