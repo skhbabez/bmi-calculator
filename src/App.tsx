@@ -1,11 +1,7 @@
 import Hero from "./layouts/Hero/Hero";
 
 function App() {
-  return (
-    <main>
-      <Hero />
-    </main>
-  );
+  return <main>{/* <Hero /> */}</main>;
 }
 
 export default App;

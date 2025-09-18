@@ -39,6 +39,7 @@ fieldset {
   --space-16: 1rem;
   --space-24: 1.5rem;
   --font-base: "Inter", sans-serif;
+  --gradient-bg: linear-gradient(to right, hsla(183, 95%, 92%, 0), #d6e6fe);
 }
 
 body {
@@ -46,6 +47,22 @@ body {
   font-family: var(--font-base);
   font-size: 1rem;
   color: var(--grey-500);
+  min-block-size: 100dvh;
+}
+
+body::before {
+  content: "";
+  display: block;
+  position: fixed;
+  z-index: -1;
+  block-size: clamp(40rem, 41.1249rem + -2.3435vw, 40.5756rem);
+  inline-size: 100%;
+  border-radius: 0 0 2.1875rem 2.1875rem;
+  background: var(--gradient-bg);
+  max-inline-size: max(62.625rem, 69.58%);
+  @media (min-width: 1002px) {
+    block-size: 46.0625rem;
+  }
 }
 
 h1,
