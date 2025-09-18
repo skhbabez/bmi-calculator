@@ -50,7 +50,7 @@ body {
   min-block-size: 100dvh;
 }
 
-body::before {
+.wrapper::before {
   content: "";
   display: block;
   position: fixed;
@@ -117,7 +117,7 @@ h3 {
   font-weight: 600;
 }
 .text-l-sb {
-  font-size: 2rem;
+  font-size: clamp(2rem, 0.8571rem + 2.381vw, 3rem);
   letter-spacing: -5%;
   line-height: 1.1;
   font-family: inherit;
