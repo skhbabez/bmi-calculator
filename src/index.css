@@ -50,20 +50,7 @@ body {
   min-block-size: 100dvh;
 }
 
-.wrapper::before {
-  content: "";
-  display: block;
-  position: fixed;
-  z-index: -1;
-  block-size: clamp(40rem, 41.1249rem + -2.3435vw, 40.5756rem);
-  inline-size: 100%;
-  border-radius: 0 0 2.1875rem 2.1875rem;
-  background: var(--gradient-bg);
-  max-inline-size: max(62.625rem, 69.58%);
-  @media (min-width: 1002px) {
-    block-size: 46.0625rem;
-  }
-}
+
 
 h1,
 h2,

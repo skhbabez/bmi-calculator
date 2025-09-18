@@ -1,7 +1,4 @@
 .results {
-  position: relative;
-}
-.results section {
   display: flex;
   row-gap: 3rem;
 
@@ -19,14 +16,15 @@
 .resultscontent {
   padding-inline: 23.5px;
   max-inline-size: 465px;
+  min-inline-size: 331px;
   & p {
     margin-block-start: 2rem;
   }
 }
 
 @media (min-width: 768px) {
-  .results section {
-    position: absolute;
+  .results {
+    position: relative;
     left: clamp(-7.25rem, -55.25rem + 100vw, 0rem);
     column-gap: 4.5rem;
     margin-inline-end: 2.6875rem;
@@ -45,7 +43,7 @@
 }
 
 @media (min-width: 1024px) {
-  .results section {
+  .results {
     justify-content: space-between;
     align-items: end;
     position: static;

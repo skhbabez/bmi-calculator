@@ -1,15 +1,16 @@
 import Hero from "./layouts/Hero/Hero";
 import Results from "./layouts/Results/Results";
+import Tips from "./layouts/Tips/Tips";
 
 function App() {
   return (
-    <div className="wrapper">
-      <main>
-        <Hero />
+    <main>
+      <Hero />
+      <section>
         <Results />
-      </main>
-      ;
-    </div>
+        <Tips />
+      </section>
+    </main>
   );
 }
 
