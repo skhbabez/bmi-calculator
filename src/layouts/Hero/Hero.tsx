@@ -12,7 +12,9 @@ const Hero = () => {
         </svg>
         <div className={styles.heromain}>
           <div className={styles.herocontent}>
-            <h1 className="text-xl-sb ">Body Mass Index Calculator</h1>
+            <h1 className="text-xl-sb ">
+              Body Mass <br /> Index Calculator
+            </h1>
             <p>
               Better understand your weight in relation to your height using our
               body mass index (BM) calculator. While BMI is not the sole
