@@ -22,7 +22,7 @@ const values = [
 
 const Tips = () => {
   return (
-    <ul className={styles.tiplist}>
+    <ul className={styles.tiplist} aria-label="Health tips">
       {values.map(({ id, icon, title, text }) => (
         <li key={id} className={styles.tip}>
           <img src={icon} width={64} height={64} alt="" />
