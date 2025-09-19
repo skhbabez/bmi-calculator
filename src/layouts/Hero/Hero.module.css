@@ -1,8 +1,12 @@
 .hero {
   display: grid;
+  position: relative;
+  row-gap: clamp(2rem, 1.5229rem + 2.0356vw, 2.5rem);
+  /* @link https://utopia.fyi/clamp/calculator?a=375,768,24—40 */
+  padding-inline: clamp(1.5rem, 0.5458rem + 4.0712vw, 2.5rem);
+  padding-block-start: 2rem;
   max-inline-size: 72.5rem;
   /* @link https://utopia.fyi/clamp/calculator?a=375,768,32—40 */
-  row-gap: clamp(2rem, 1.5229rem + 2.0356vw, 2.5rem);
   & > svg {
     block-size: clamp(2.5rem, 0.7857rem + 3.5714vw, 4rem);
     inline-size: clamp(2.5rem, 0.7857rem + 3.5714vw, 4rem);
@@ -23,6 +27,9 @@
 
 @media (min-width: 1280px) {
   .hero {
+    padding-inline: 0;
+    padding-block-start: 5.5rem;
+    margin: 0 auto;
     row-gap: 1.5rem;
     & > svg {
       margin-inline: 0;
@@ -41,5 +48,23 @@
     & > * {
       max-inline-size: 29.0625rem;
     }
+  }
+  .wrapper {
+    min-block-size: 737px;
+  }
+}
+
+.wrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  block-size: clamp(40rem, 41.1249rem + -2.3435vw, 40.5756rem);
+  inline-size: 100%;
+  border-radius: 0 0 2.1875rem 2.1875rem;
+  background: var(--gradient-bg);
+  @media (min-width: 1280px) {
+    max-inline-size: max(62.625rem, 69.58%);
+    block-size: 46.0625rem;
   }
 }

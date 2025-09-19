@@ -1,0 +1,51 @@
+.tipscontent {
+  & p {
+    margin-block-start: 1.5rem;
+  }
+}
+
+.tip {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  column-gap: 2.5rem;
+}
+
+.tiplist {
+  padding-inline: 1.5rem;
+  padding-block: 3rem;
+  background: var(--gradient-bg);
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5rem;
+  column-gap: 2rem;
+  /* @link https://utopia.fyi/clamp/calculator?a=375,768,62—96 */
+  margin-block-start: clamp(3.875rem, 1.8473rem + 8.6514vw, 6rem);
+}
+
+@media (min-width: 768px) {
+  .tiplist {
+    padding-inline: 2.4375rem;
+    padding-block: 3.125rem;
+  }
+  .tip {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media (min-width: 1280px) {
+  .tiplist {
+    flex-direction: row;
+    border-radius: 2.1875rem;
+    margin-inline-end: 3rem;
+    margin-inline-start: 0.625rem;
+    align-items: center;
+    justify-content: center;
+    padding-block: 6rem;
+  }
+  .tip {
+    flex-direction: column;
+    align-items: start;
+    max-inline-size: 365px;
+  }
+}
