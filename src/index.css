@@ -9,7 +9,6 @@
 img,
 svg {
   max-inline-size: 100%;
-  display: block;
 }
 
 ul,
@@ -40,6 +39,7 @@ fieldset {
   --space-24: 1.5rem;
   --font-base: "Inter", sans-serif;
   --gradient-bg: linear-gradient(to right, hsla(183, 95%, 92%, 0), #d6e6fe);
+  --shadow: 1rem 2rem 3.5rem 0 hsla(211, 40%, 69%, 25%);
 }
 
 body {
@@ -48,9 +48,8 @@ body {
   font-size: 1rem;
   color: var(--grey-500);
   min-block-size: 100dvh;
+  background-color: var(--white);
 }
-
-
 
 h1,
 h2,

@@ -1,0 +1,29 @@
+.limitations {
+  margin-block-start: 5.125rem;
+  text-align: center;
+  & > p {
+    margin-block-start: 2rem;
+  }
+}
+
+.limitationslist {
+  margin-block-start: 3.5rem;
+  display: grid;
+  row-gap: 1rem;
+  & li {
+    text-align: start;
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    & h3 * {
+      vertical-align: middle;
+    }
+    & img {
+      margin-inline-end: 1rem;
+    }
+    & p {
+      margin-block-start: 1rem;
+    }
+  }
+}

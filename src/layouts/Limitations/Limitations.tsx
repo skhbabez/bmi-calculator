@@ -35,7 +35,7 @@ const values = [
 
 const Limitations = () => {
   return (
-    <section>
+    <section className={styles.limitations}>
       <h2 className="text-l-sb">Limitations of BMI</h2>
       <p>
         Although BMI is often a practical indicator of healthy weight, it is not
@@ -43,14 +43,14 @@ const Limitations = () => {
         BMI outcomes, and in certain cases, the measurement may not be
         beneficial to use.
       </p>
-      <ul className={styles.tiplist}>
+      <ul className={styles.limitationslist}>
         {values.map(({ id, icon, title, text }) => (
-          <li key={id} className={styles.tip}>
-            <img src={icon} width={32} height={32} alt="" />
-            <div className={styles.tipscontent}>
-              <h3 className="text-ml-sb">{title}</h3>
-              <p>{text}</p>
-            </div>
+          <li key={id}>
+            <h3 className="text-ml-sb">
+              <img src={icon} width={32} height={32} alt="" />
+              <span>{title} </span>
+            </h3>
+            <p>{text}</p>
           </li>
         ))}
       </ul>
