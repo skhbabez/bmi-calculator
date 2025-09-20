@@ -58,7 +58,6 @@
 
   .limitationslist {
     justify-content: end;
-    align-content: end;
     grid-template-columns: repeat(10, 67.33px);
     gap: 2rem;
     & li:nth-child(1) {
