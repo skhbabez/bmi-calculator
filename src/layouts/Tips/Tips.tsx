@@ -22,17 +22,19 @@ const values = [
 
 const Tips = () => {
   return (
-    <ul className={styles.tiplist}>
-      {values.map(({ id, icon, title, text }) => (
-        <li key={id} className={styles.tip}>
-          <img src={icon} width={64} height={64} alt="" />
-          <div className={styles.tipscontent}>
-            <h3 className="text-ml-sb">{title}</h3>
-            <p>{text}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <div className={styles.tipwrapper}>
+      <ul className={styles.tiplist} aria-label="Health tips">
+        {values.map(({ id, icon, title, text }) => (
+          <li key={id} className={styles.tip}>
+            <img src={icon} width={64} height={64} alt="" />
+            <div className={styles.tipscontent}>
+              <h3 className="text-ml-sb">{title}</h3>
+              <p>{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
