@@ -1,5 +1,11 @@
-.limitations {
+.limitationswrapper {
+  padding-inline: var(--page-m-m-t);
   margin-block-start: 5.125rem;
+  margin-block-end: 6.5rem;
+}
+.limitations {
+  max-inline-size: var(--max-page-size);
+  margin-inline: auto;
 }
 
 .description {
@@ -13,6 +19,7 @@
   margin-block-start: 3.5rem;
   display: grid;
   row-gap: 1rem;
+  justify-items: center;
   & li {
     background-color: var(--white);
     border-radius: 1rem;
@@ -32,10 +39,13 @@
 }
 
 @media (min-width: 768px) {
+  .limitationswrapper {
+    padding-inline: var(--page-m-t-d);
+  }
+
   .limitationslist {
     grid-template-columns: repeat(2, minmax(0, auto));
     column-gap: 1rem;
-    justify-items: center;
     row-gap: 1.5rem;
     place-content: center;
     & li {

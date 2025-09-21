@@ -40,6 +40,9 @@ fieldset {
   --font-base: "Inter", sans-serif;
   --gradient-bg: linear-gradient(to right, hsla(183, 95%, 92%, 0), #d6e6fe);
   --shadow: 1rem 2rem 3.5rem 0 hsla(211, 40%, 69%, 25%);
+  --page-m-m-t: clamp(1.5rem, 0.5458rem + 4.0712vw, 2.5rem);
+  --page-m-t-d: clamp(2.5rem, -4.9286rem + 15.4762vw, 9rem);
+  --max-page-size: 72.5rem;
 }
 
 body {

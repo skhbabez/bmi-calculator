@@ -11,21 +11,38 @@
   column-gap: 2.5rem;
 }
 
-.tiplist {
-  padding-inline: 1.5rem;
+.tipwrapper {
+  position: relative;
+  /* @link https://utopia.fyi/clamp/calculator?a=375,768,62—96 */
+  margin-block-start: clamp(3.875rem, 1.8473rem + 8.6514vw, 6rem);
   padding-block: 3rem;
-  background: var(--gradient-bg);
+  padding-inline: var(--page-m-m-t);
+  &::before {
+    content: "";
+    position: absolute;
+    background: var(--gradient-bg);
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+  }
+}
+
+.tiplist {
   display: flex;
   flex-direction: column;
   row-gap: 2.5rem;
   column-gap: 2rem;
-  /* @link https://utopia.fyi/clamp/calculator?a=375,768,62—96 */
-  margin-block-start: clamp(3.875rem, 1.8473rem + 8.6514vw, 6rem);
+  margin-inline: auto;
+  max-inline-size: var(--max-page-size);
 }
 
 @media (min-width: 768px) {
-  .tiplist {
-    padding-inline: 2.4375rem;
+  .tipwrapper {
+    padding-inline: var(--page-m-t-d);
     padding-block: 3.125rem;
   }
   .tip {
@@ -34,13 +51,19 @@
   }
 }
 @media (min-width: 1280px) {
+  .tipwrapper {
+    &::before {
+      content: "";
+      border-radius: 2.1875rem;
+      left: 0.625rem;
+      inline-size: 96.67%;
+      background-repeat: no-repeat;
+    }
+  }
   .tiplist {
     flex-direction: row;
-    border-radius: 2.1875rem;
-    margin-inline-end: 3rem;
-    margin-inline-start: 0.625rem;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding-block: 6rem;
   }
   .tip {
