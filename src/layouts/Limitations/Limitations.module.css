@@ -59,6 +59,12 @@
 @media (min-width: 1440px) {
   .limitations {
     position: relative;
+    &::before {
+      content: url("images/pattern-curved-line-right.svg");
+      position: absolute;
+      top: 222px;
+      left: 161px;
+    }
   }
   .description {
     position: absolute;
