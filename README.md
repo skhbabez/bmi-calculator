@@ -86,7 +86,7 @@ const SelectionButton = ({
 };
 ```
 
-I struggled initially to synchronize the metric and imperial inputs. I eventually abandoned the idea to use one single state for both and just updated them in parallel. I did use useRef though so i could treat two input fields as one. I might also come back to this to implement some better popovers for the inpt fields. While not required, the current implementationm does not feel descriptive enough as the constraints fo the fields are not well communicated. Especially from an accessibility standpoint, this might have to improve.
+I struggled initially to synchronize the metric and imperial inputs. I eventually abandoned the idea to use one single state for both and just updated them in parallel. I did use useRef though so i could treat two input fields as one. I might also come back to this to implement some better popovers for the inpt fields. This aslo gave me an opprtunity to practice typescript overloads for my validation.
 
 ```tsx
 const CalculatorCard = () => {
@@ -98,31 +98,39 @@ const CalculatorCard = () => {
   const [cm, setCm] = useState<number>();
   const [kilograms, setKilograms] = useState<number>();
 
-  const metricHeightChange = (height: number) => {
-    const { feet, inches } = toImperialHeight(height / 100);
-    setFeet(Math.round(feet));
-    setInches(Math.round(inches));
-    setCm(Math.round(height));
+const metricHeightChange = (height: number) => {
+    if (heightValidation(height)) {
+      const { feet, inches } = toImperialHeight(height / 100);
+      setFeet(Math.round(feet));
+      setInches(Math.round(inches));
+      setCm(Math.round(height));
+    }
   };
   const metricWeightChange = (weight: number) => {
-    const { stone, pound } = toImperialWeight(weight);
-    setStone(Math.round(stone));
-    setPound(Math.round(pound));
-    setKilograms(Math.round(weight));
+    if (weightValidation(weight)) {
+      const { stone, pound } = toImperialWeight(weight);
+      setStone(Math.round(stone));
+      setPound(Math.round(pound));
+      setKilograms(Math.round(weight));
+    }
   };
 
   const imperialWeightChange = (stone: number, pound: number) => {
-    const weight = toMetricWeight(stone, pound);
-    setStone(Math.round(stone));
-    setPound(Math.round(pound));
-    setKilograms(Math.round(weight));
+    if (weightValidation(stone, pound)) {
+      const weight = toMetricWeight(stone, pound);
+      setStone(Math.round(stone));
+      setPound(Math.round(pound));
+      setKilograms(Math.round(weight));
+    }
   };
 
   const imperialHeightChange = (feet: number, inches: number) => {
-    const height = toMetricHeight(feet, inches);
-    setFeet(Math.round(feet));
-    setInches(Math.round(inches));
-    setCm(Math.round(height) * 100);
+    if (heightValidation(feet, inches)) {
+      const height = toMetricHeight(feet, inches);
+      setFeet(Math.round(feet));
+      setInches(Math.round(inches));
+      setCm(Math.round(height) * 100);
+    }
   };
   return (
     <form className={styles.card} noValidate aria-labelledby={formId}>
@@ -192,7 +200,7 @@ Css wise I am especially proud of my grid implementation. I used the Layout guid
 
 ### Continued development
 
-For the next Project I want to dive deeper into Testing with Storybook. I mostly revisited vitest her to see how it integrates into it. I personally struggled the most keeping track of accessibility, in terms of semantic layouts, due to reacts component based structure. Furthermore, setting a general page margin was wuite difgficult due to all the different overflowing backgrounds. I will explore some different strategies to better manage this in my next project.
+For the next Project I want to dive deeper into Testing with Storybook. I mostly revisited vitest her to see how it integrates into it. I personally struggled the most keeping track of accessibility, in terms of semantic layouts, due to reacts component based structure. Furthermore, setting a general page margin was quite difficult due to all the different overflowing backgrounds. I will explore some different strategies to better manage this in my next project. While not required, the current implementationm does not feel descriptive enough as the constraints on the fields are not well communicated. Especially from an accessibility standpoint, this I might have to improve. I am also not sure igf these constraints just might be to restrictive.
 
 ### Useful resources
 
