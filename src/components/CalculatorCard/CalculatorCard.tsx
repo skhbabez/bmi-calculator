@@ -17,6 +17,26 @@ const removeLetters = (value: string) => {
   return value.replace(/\D/g, "");
 };
 
+function heightValidation(feet: number, inches: number): boolean;
+function heightValidation(cm: number): boolean;
+function heightValidation(feetOrCm: number, inches?: number): boolean {
+  if (inches !== undefined) {
+    return feetOrCm >= 0 && feetOrCm <= 8 && inches >= 0 && inches < 12;
+  }
+  return feetOrCm >= 0 && feetOrCm <= 300; //https://de.wikipedia.org/wiki/Robert_Wadlow
+}
+
+function weightValidation(kilograms: number): boolean;
+function weightValidation(stone: number, pounds: number): boolean;
+function weightValidation(weightOrStone: number, pounds?: number): boolean {
+  if (pounds !== undefined) {
+    return (
+      weightOrStone >= 0 && weightOrStone <= 100 && pounds >= 0 && pounds < 14
+    );
+  }
+  return weightOrStone >= 0 && weightOrStone <= 635; // https://en.wikipedia.org/wiki/Jon_Brower_Minnoch
+}
+
 const CalculatorCard = () => {
   const [unit, setUnit] = useState<unitSystem>("metric");
   const [feet, setFeet] = useState<number>();
@@ -25,34 +45,41 @@ const CalculatorCard = () => {
   const [pound, setPound] = useState<number>();
   const [cm, setCm] = useState<number>();
   const [kilograms, setKilograms] = useState<number>();
-
-  const metricHeightChange = (height: number) => {
-    const { feet, inches } = toImperialHeight(height / 100);
-    setFeet(Math.round(feet));
-    setInches(Math.round(inches));
-    setCm(Math.round(height));
-  };
-  const metricWeightChange = (weight: number) => {
-    const { stone, pound } = toImperialWeight(weight);
-    setStone(Math.round(stone));
-    setPound(Math.round(pound));
-    setKilograms(Math.round(weight));
-  };
-
   const formId = useId();
 
+  const metricHeightChange = (height: number) => {
+    if (heightValidation(height)) {
+      const { feet, inches } = toImperialHeight(height / 100);
+      setFeet(Math.round(feet));
+      setInches(Math.round(inches));
+      setCm(Math.round(height));
+    }
+  };
+  const metricWeightChange = (weight: number) => {
+    if (weightValidation(weight)) {
+      const { stone, pound } = toImperialWeight(weight);
+      setStone(Math.round(stone));
+      setPound(Math.round(pound));
+      setKilograms(Math.round(weight));
+    }
+  };
+
   const imperialWeightChange = (stone: number, pound: number) => {
-    const weight = toMetricWeight(stone, pound);
-    setStone(Math.round(stone));
-    setPound(Math.round(pound));
-    setKilograms(Math.round(weight));
+    if (weightValidation(stone, pound)) {
+      const weight = toMetricWeight(stone, pound);
+      setStone(Math.round(stone));
+      setPound(Math.round(pound));
+      setKilograms(Math.round(weight));
+    }
   };
 
   const imperialHeightChange = (feet: number, inches: number) => {
-    const height = toMetricHeight(feet, inches);
-    setFeet(Math.round(feet));
-    setInches(Math.round(inches));
-    setCm(Math.round(height) * 100);
+    if (heightValidation(feet, inches)) {
+      const height = toMetricHeight(feet, inches);
+      setFeet(Math.round(feet));
+      setInches(Math.round(inches));
+      setCm(Math.round(height) * 100);
+    }
   };
   return (
     <form className={styles.card} noValidate aria-labelledby={formId}>
@@ -235,9 +262,7 @@ const ImperialView = ({
           />
         </Label>
       </fieldset>
-
     </div>
-    
   );
 };
 

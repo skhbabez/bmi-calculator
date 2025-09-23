@@ -85,7 +85,8 @@ const SelectionButton = ({
   );
 };
 ```
-I struggled initially to synchronize the metric and imperial inputs. I eventually abandoned the idea to use one single state for both and just updated them in parallel. I did use useRef though so i could treat two input fields as one
+
+I struggled initially to synchronize the metric and imperial inputs. I eventually abandoned the idea to use one single state for both and just updated them in parallel. I did use useRef though so i could treat two input fields as one. I might also come back to this to implement some better popovers for the inpt fields. While not required, the current implementationm does not feel descriptive enough as the constraints fo the fields are not well communicated. Especially from an accessibility standpoint, this might have to improve.
 
 ```tsx
 const CalculatorCard = () => {
@@ -191,7 +192,7 @@ Css wise I am especially proud of my grid implementation. I used the Layout guid
 
 ### Continued development
 
-For the next Project I want to dive deeper into Testing with Storybook. I mostly revisited vitest her to see how it integrates into it. I personally struggled the most keeping track of accessibility, in terms of semantic layouts, due to reacts component based structure. Furthermore, setting a general page margin was wuite difgficult due to all the different overflowing backgrounds. I will explore some different strategies to better manage this in my next project. 
+For the next Project I want to dive deeper into Testing with Storybook. I mostly revisited vitest her to see how it integrates into it. I personally struggled the most keeping track of accessibility, in terms of semantic layouts, due to reacts component based structure. Furthermore, setting a general page margin was wuite difgficult due to all the different overflowing backgrounds. I will explore some different strategies to better manage this in my next project.
 
 ### Useful resources
 
