@@ -70,7 +70,10 @@
   inline-size: 100%;
   border-radius: 0 0 2.1875rem 2.1875rem;
   background: var(--gradient-bg);
-  @media (min-width: 1440px) {
+}
+
+@media (min-width: 1440px) {
+  .wrapper::before {
     max-inline-size: max(62.625rem, 69.58%);
     block-size: 46.0625rem;
   }
