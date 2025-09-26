@@ -47,8 +47,6 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     column-gap: 2rem;
-    /* align-items: center; */
-
     justify-items: start;
   }
   .herocontent {
