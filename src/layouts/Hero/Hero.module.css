@@ -47,11 +47,13 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     column-gap: 2rem;
-    align-items: center;
+    /* align-items: center; */
+
     justify-items: start;
   }
   .herocontent {
     text-align: start;
+    padding-block-start: 4.5rem;
     & > * {
       max-inline-size: 29.0625rem;
     }

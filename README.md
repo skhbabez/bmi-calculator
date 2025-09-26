@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/skhbabez/bmi-calculator](https://github.com/skhbabez/bmi-calculator)
+- Live Site URL: [Ahttps://skhbabez.github.io/bmi-calculator/](https://skhbabez.github.io/bmi-calculator/)
 
 ## My process
 
@@ -43,6 +43,7 @@ Users should be able to:
 - [Storybook](https://storybook.js.org/) - JS library
 - [Typescript](https://www.typescriptlang.org/)
 - [vitest](https://vitest.dev/) - JS library
+- [clsx](https://github.com/lukeed/clsx#readme) - JS library
 - [vite](https://vite.dev/)
 
 ### What I learned
@@ -204,5 +205,7 @@ For the next Project I want to dive deeper into Testing with Storybook. I mostly
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Baseline alignment](https://stackoverflow.com/questions/69037561/how-to-align-baselines-for-absolutely-positioned-html-element) - Useful trick to get the image moving into the screen right.
+- [Typescript utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html) - Great overview of Typescript utility types.
+- [Border radius overlap explanantions](https://css-tricks.com/what-happens-when-border-radii-overlap/) - This helped me better understand how the 999px trick works
+- [BMI Resource](https://en.wikipedia.org/wiki/Body_mass_index) - i used this as reference for the BMI messages
